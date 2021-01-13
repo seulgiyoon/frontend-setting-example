@@ -19,8 +19,8 @@ export default function RawImagesPage() {
           key={index}
           src={singleData.imgUrl}
           alt=""
-          width={200}
-          height={200}
+          width={100}
+          height={100}
         />
       ))}
     </StyledImageGrid>
