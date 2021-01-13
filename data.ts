@@ -1,4 +1,4 @@
-export const IMAGE_DATA = [
+export const PET_IMAGES = [
   {
     imgUrl: `/images/cat01.jpeg`,
   },

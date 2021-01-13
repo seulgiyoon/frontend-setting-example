@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
-import { IMAGE_DATA } from '../../data';
+import { PET_IMAGES } from '../../data';
 
 const StyledImageGrid = styled.div`
   display: grid;
@@ -12,13 +12,13 @@ const StyledImageGrid = styled.div`
 export default function OptimizedImagesPage() {
   return (
     <StyledImageGrid>
-      {IMAGE_DATA.map((singleData, index) => (
+      {PET_IMAGES.map((singleData, index) => (
         <Image
           key={index}
           src={singleData.imgUrl}
           alt=""
-          width={200}
-          height={200}
+          width={100}
+          height={100}
           objectFit="cover"
         />
       ))}
