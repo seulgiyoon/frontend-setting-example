@@ -7,6 +7,14 @@ const StyledImageGrid = styled.div`
   display: grid;
   gap: 2rem;
   grid-template-columns: repeat(3, minmax(auto, 1fr));
+
+  > div {
+    padding-top: 100%;
+  }
+
+  img {
+    position: absolute;
+  }
 `;
 
 export default function OptimizedImagesPage() {
