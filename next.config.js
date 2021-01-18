@@ -26,7 +26,7 @@ module.exports = {
           // 빌드된 파일이 저장될 경로
           outputPath: !dev ? '../public/images/' : '../public/hashedImages/',
           // 경로 앞에 붙을 경로. 설정하지 않으면 _next/부터 시작한다.
-          publicPath: !dev ? '/hashedImages/' : '/images/',
+          publicPath: !dev ? '/images/' : '/hashedImages/',
         },
       },
     });
