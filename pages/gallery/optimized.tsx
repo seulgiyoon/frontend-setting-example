@@ -18,15 +18,10 @@ const StyledImageGrid = styled.div`
   }
 `;
 
-console.log({img : requiredImg.default})
+console.log({ img: requiredImg.default });
 export default function OptimizedImagesPage() {
   return (
     <StyledImageGrid>
-      <Image
-        src={require('../../public/images/cat01.jpeg').default}
-        alt=""
-        layout="fill"
-      />
       {PET_IMAGES.map((singleData, index) => {
         return (
           <Image

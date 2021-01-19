@@ -22,7 +22,7 @@ module.exports = {
     config.module.rules.push({
       test: /\.(png|jpg|jpeg|gif|svg|eot|ttf|woff|woff2)$/,
       use: {
-        loader: 'file-loader',
+        loader: 'url-loader',
         options: {
           // '[이름].[확장자]?[해시(파일이 변경된 경우에만 변경됨)] 형태로 파일 이름을 설정한다
           name: '[name].[ext]?[contenthash]',
@@ -30,6 +30,9 @@ module.exports = {
           outputPath: dev ? '../public/hashedImages/' : '../public/images/',
           // 경로 앞에 붙을 경로. 설정하지 않으면 _next/부터 시작한다.
           publicPath: dev ? '/hashedImages/' : '/images/',
+          // 10kb 파일까지는 base64로 인코딩해서 인라인으로 삽입한다.
+          // 이 크기 이상 넘어가는 파일은 file-loader가 처리한다.
+          limit: 10000,
         },
       },
     });
