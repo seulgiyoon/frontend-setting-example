@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { PET_IMAGES } from '../../data';
+import { PET_IMAGES_RAW } from '../../data';
 
 const StyledImageGrid = styled.div`
   display: grid;
@@ -26,7 +26,7 @@ const StyledImageGrid = styled.div`
 export default function RawImagesPage() {
   return (
     <StyledImageGrid>
-      {PET_IMAGES.map((singleData, index) => (
+      {PET_IMAGES_RAW.map((singleData, index) => (
         <div key={index} className="container">
           <img src={singleData.imgUrl} alt="" width={100} height={100} />
         </div>

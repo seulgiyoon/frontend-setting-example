@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
-import { PET_IMAGES } from '../../data';
+import { PET_IMAGES_OPTIMIZED } from '../../data';
 const requiredImg = require('../../public/images/cat01.jpeg');
 
 const StyledImageGrid = styled.div`
@@ -19,10 +19,14 @@ const StyledImageGrid = styled.div`
 `;
 
 console.log({ img: requiredImg.default });
+if (process.browser) {
+  console.log({ dpr: window.devicePixelRatio });
+}
+
 export default function OptimizedImagesPage() {
   return (
     <StyledImageGrid>
-      {PET_IMAGES.map((singleData, index) => {
+      {PET_IMAGES_OPTIMIZED.map((singleData, index) => {
         return (
           <Image
             key={index}
