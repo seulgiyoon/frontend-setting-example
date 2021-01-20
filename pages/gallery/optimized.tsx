@@ -31,7 +31,6 @@ export default function OptimizedImagesPage() {
           <Image
             key={index}
             src={require(`../../public/images/${singleData.imgUrl}`).default}
-            // src={singleData.imgUrl}
             alt=""
             width={100}
             height={100}
