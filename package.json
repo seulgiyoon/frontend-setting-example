@@ -1,0 +1,13 @@
+{
+  "name": "frontend-setting-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/seulgiyoon/frontend-setting-example.git",
+  "author": "Ellie <sgyoon.info@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "common/ui",
+    "website"
+  ]
+}
