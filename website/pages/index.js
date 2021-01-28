@@ -1,17 +1,21 @@
 import React from 'react';
-import Image from 'next/image';
+import { Layout, Navbar, Footer } from '@monorepo/ui';
+import { ModalProvider } from '../util/context/ModalContext';
+import { ModalContext } from './modalContext';
+
+let { handleModal } = React.useContext(ModalContext);
 
 export default function Home() {
   return (
-    <>
-      <h1>My Homepage</h1>
-      <Image
-        src="/images/cat01.jpeg"
-        alt="Picture of the author"
-        width={500}
-        height={500}
-      />
-      <p>Welcome to my homepage!</p>
-    </>
+    <ModalProvider>
+      <Layout>
+        <Navbar>
+          <li>로고</li>
+          <li>장바구니</li>
+          <li onClick={() => handleModal('hellllllo')}>로그인</li>
+        </Navbar>
+        <Footer>Sample Shop</Footer>
+      </Layout>
+    </ModalProvider>
   );
 }
