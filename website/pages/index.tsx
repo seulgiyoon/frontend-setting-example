@@ -9,16 +9,16 @@ const Home = (props) => {
   const queryClient = useQueryClient();
   const { handleModal } = useContext(ModalContext);
 
-  const getWineList = () => ProductApi.byColor('reds', undefined, undefined);
+  const getWineList = () => ProductApi.byColor('reds');
   const { data } = useQuery('wines', getWineList, {
     initialData: props.data,
   });
-  const mutation = useMutation(getWineList, {
-    onSuccess: () => {
-      // Invalidate and refetch
-      queryClient.invalidateQueries('wines');
-    },
-  });
+  // const mutation = useMutation(getWineList, {
+  //   onSuccess: () => {
+  //     // Invalidate and refetch
+  //     queryClient.invalidateQueries('wines');
+  //   },
+  // });
 
   return (
     <>
@@ -28,9 +28,13 @@ const Home = (props) => {
         <li onClick={() => handleModal('hello')}>로그인</li>
       </Navbar>
       <div>
-        {data.data.map((singleData) => (
-          <p key={singleData.id}>{singleData.wine}</p>
-        ))}
+        {data?.data ? (
+          data.data.map((singleData) => (
+            <p key={singleData.id}>{singleData.wine}</p>
+          ))
+        ) : (
+          <p>hello</p>
+        )}
       </div>
       <Footer>Sample Shop</Footer>
     </>
@@ -39,8 +43,9 @@ const Home = (props) => {
 
 export async function getStaticProps() {
   try {
-    let data = await ProductApi.byColor('reds', undefined, undefined);
+    let data = await ProductApi.byColor('reds');
     data = JSON.parse(JSON.stringify(data));
+
     return {
       props: {
         data,
