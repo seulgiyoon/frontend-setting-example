@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useContext } from 'react';
 import styled from 'styled-components';
 
 const StyledNav = styled('nav')``;

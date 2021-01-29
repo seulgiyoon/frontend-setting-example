@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "workspaces": [
-    "common/ui",
+    "common/*",
     "website"
   ]
 }

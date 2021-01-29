@@ -8,8 +8,10 @@
     "start": "next start"
   },
   "dependencies": {
+    "@reach/dialog": "^0.13.0",
     "@reach/portal": "^0.13.0",
     "babel-plugin-styled-components": "^1.12.0",
+    "body-scroll-lock": "^3.1.5",
     "next": "10.0.5",
     "next-transpile-modules": "^6.0.0",
     "react": "17.0.1",
@@ -17,6 +19,8 @@
   },
   "devDependencies": {
     "@monorepo/ui": "*",
+    "@monorepo/hooks": "*",
+    "@monorepo/context": "*",
     "@types/node": "^14.14.20",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",

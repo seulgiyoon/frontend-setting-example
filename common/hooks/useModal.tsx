@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default () => {
+const useModal = () => {
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState('');
 
@@ -13,3 +13,5 @@ export default () => {
 
   return { modal, handleModal, modalContent };
 };
+
+export default useModal;
