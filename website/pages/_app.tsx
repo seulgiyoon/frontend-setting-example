@@ -1,10 +1,15 @@
 import '../styles/globals.css';
-import { ModalProvider } from '../util/context/ModalContext';
+import { ModalProvider } from '../utils/context/ModalContext';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }) {
   return (
     <ModalProvider>
-      <Component {...pageProps} />
+      <QueryClientProvider client={queryClient}>
+        <Component {...pageProps} />
+      </QueryClientProvider>
     </ModalProvider>
   );
 }
