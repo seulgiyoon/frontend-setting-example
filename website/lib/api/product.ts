@@ -6,7 +6,14 @@ export const getQuery = (limit: number, page: number): string =>
   `limit=${limit}&offset=${page ? page * limit : 0}`;
 
 export const ProductApi = {
-  byColor: (color) => axios.get(`${BASE_URL}/${color}`),
+  byColor: async (color) => {
+    try {
+      const result = await axios.get(`${BASE_URL}/${color}`);
+      return result.data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
 
 // export const ProductApi = (color, page, limit = 10) =>

@@ -3,22 +3,29 @@ import { Layout, Navbar, Footer, UserNav } from '@monorepo/ui';
 import { ModalContext } from '../utils/context/ModalContext';
 // import { ModalContext } from '@monorepo/context/ModalContext';
 import { ProductApi } from '@api/product';
-import { useQuery, useMutation, useQueryClient } from 'react-query';
+import { useQuery, QueryClient } from 'react-query';
+import { dehydrate } from 'react-query/hydration';
 
-// SSR이면 로딩이 없어야하잖아? 뭘 잘못한모양.
-const Home = (props) => {
-  console.log({ serverSideData: props.data });
-  // const queryClient = useQueryClient();
+const getWineList = () => ProductApi.byColor('reds');
+
+export async function getStaticProps() {
+  const queryClient = new QueryClient();
+
+  // axios 사용 시 api에서 데이터만 보내야 함. 성공/실패 등 모든 정보를 담은 객체를 보내면 직렬화 오류 발생함.
+  await queryClient.prefetchQuery('wines', getWineList);
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+}
+
+const Home = () => {
   const { handleModal } = useContext(ModalContext);
 
-  const getWineList = () => ProductApi.byColor('reds');
-  const {
-    data: { data },
-  } = useQuery('wines', getWineList, {
-    initialData: props.data,
-  });
+  const { data } = useQuery('wines', getWineList);
 
-  console.log({ clientSideData: data });
   return (
     <>
       <Navbar>
@@ -37,23 +44,5 @@ const Home = (props) => {
     </>
   );
 };
-
-// 데이터 받아오는걸 여기서 실패한 모양. 그래서 쿼리가 제대로안먹는듯.
-export async function getStaticProps() {
-  try {
-    const data = await ProductApi.byColor('reds');
-
-    return {
-      props: {
-        data: data?.data,
-      },
-    };
-  } catch (error) {
-    console.error(error);
-    return {
-      props: {},
-    };
-  }
-}
 
 export default Home;
