@@ -5,8 +5,10 @@ import { ModalContext } from '../utils/context/ModalContext';
 import { ProductApi } from '@api/product';
 import { useQuery, QueryClient } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 const getWineList = () => ProductApi.byColor('reds');
+const isDev = process.env.NODE_ENV === 'development';
 
 export async function getStaticProps() {
   const queryClient = new QueryClient();
@@ -29,11 +31,12 @@ const Home = () => {
   return (
     <>
       <Navbar>
-        <li>로고</li>
+        <li>Home</li>
         <li>장바구니</li>
         <li onClick={() => handleModal('hello')}>로그인</li>
       </Navbar>
       <div>
+        {isDev && <ReactQueryDevtools initialIsOpen />}
         {data
           ? data.map((singleData) => (
               <p key={singleData.id}>{singleData.wine}</p>
