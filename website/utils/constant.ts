@@ -1,3 +1,4 @@
-const BASE_URL = 'https://api.sampleapis.com/wines';
+const WINE_BASE_URL = 'https://api.sampleapis.com/wines';
+const JSON_BASE_URL = 'https://jsonplaceholder.typicode.com';
 
-export { BASE_URL };
+export { WINE_BASE_URL, JSON_BASE_URL };

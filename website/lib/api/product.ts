@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { BASE_URL } from '../../utils/constant';
+import { WINE_BASE_URL } from '../../utils/constant';
 
 export const getQuery = (limit: number, page: number): string =>
   `limit=${limit}&offset=${page ? page * limit : 0}`;
@@ -8,7 +8,7 @@ export const getQuery = (limit: number, page: number): string =>
 export const ProductApi = {
   byColor: async (color) => {
     try {
-      const result = await axios.get(`${BASE_URL}/${color}`);
+      const result = await axios.get(`${WINE_BASE_URL}/${color}`);
       return result.data;
     } catch (error) {
       console.log(error);
