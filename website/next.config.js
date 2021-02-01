@@ -15,6 +15,11 @@ module.exports = withTM({
       },
     });
 
+    config.module.rules.push({
+      test: /\.tsx?|\.ts?$/,
+      use: [defaultLoaders.babel],
+    });
+
     return config;
   },
 });
