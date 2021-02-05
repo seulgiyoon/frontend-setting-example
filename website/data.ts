@@ -302,4 +302,4 @@ export const PET_IMAGES_RAW = [
   {
     imgUrl: `/images/dog25.jpeg`,
   },
-]
+];

@@ -3,6 +3,9 @@
   "env": { "browser": true, "es6": true, "node": true },
   "extends": ["eslint:recommended"],
   "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "requireConfigFile": false
+  },
   "rules": {
     "no-unused-vars": "warn",
     "no-console": "off"
@@ -26,7 +29,8 @@
         "project": "./tsconfig.json"
       },
       "rules": {
-        "@typescript-eslint/explicit-module-boundary-types": "off"
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-var-requires": "off"
       }
     }
   ]

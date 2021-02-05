@@ -41,8 +41,7 @@ export function pagination() {
       <StyledPageNav>
         <button
           onClick={() => setPage((oldPageNum) => Math.max(oldPageNum - 1, 1))}
-          disabled={page === 1}
-        >
+          disabled={page === 1}>
           이전
         </button>
         <button
@@ -51,8 +50,7 @@ export function pagination() {
               setPage((oldPageNum) => oldPageNum + 1);
             }
           }}
-          disabled={isPreviousData || data?.length === 0}
-        >
+          disabled={isPreviousData || data?.length === 0}>
           다음
         </button>
         {isFetching ? <span>로딩중..</span> : null}
