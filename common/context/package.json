@@ -6,8 +6,8 @@
   "dependencies": {
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "@monorepo/ui/Modal": "*",
-    "@monorepo/hooks/useModal": "*"
+    "@monorepo/ui": "*",
+    "@monorepo/hooks": "*"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",
