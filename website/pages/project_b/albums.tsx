@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, wrapper, SagaStore } from 'src/global/store/store';
-import { getAlbums } from 'src/project_b/features/albums/albumsSlice';
+import {
+  getAlbums,
+  AlbumState,
+} from 'src/project_b/features/albums/albumsSlice';
 import { END } from 'redux-saga';
+import Link from 'next/link';
 
 // redux example
 const ExampleTodoPage = () => {
@@ -18,7 +22,17 @@ const ExampleTodoPage = () => {
 
   if (albums.length === 0 || error || isLoading) return null;
 
-  return <div>{JSON.stringify(albums)}</div>;
+  return (
+    <ul>
+      {albums.map((album) => (
+        <li key={album.id}>
+          <Link href={`/project_b/photos/${album.id}`}>
+            <a style={{ fontSize: '2rem' }}>{album.id}</a>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
 };
 
 // redux SSR

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import { PhotoState } from 'src/project_b/features/photos/photosSlice';
 import { apiRequest } from 'src/project_b/features/photos/photosSaga';
 
@@ -46,6 +47,9 @@ export default function Post({ photos, albumId }: PhotoPageProps) {
       <Head>
         <title>Album Number: {albumId}</title>
       </Head>
+      <Link href="/project_b/albums">
+        <a>BACK</a>
+      </Link>
       <ul>
         {photos.map((photo) => (
           <li key={photo.id}>
