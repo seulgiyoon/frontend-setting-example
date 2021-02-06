@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Layout, Navbar, Footer, UserNav } from '@monorepo/ui';
 import { ModalContext } from '../utils/context/ModalContext';
-import { ProductApi } from '@api/product';
+import { ProductApi } from 'api/product';
 
 // react-query를 사용하지 않은 홈 화면
 export async function getStaticProps() {

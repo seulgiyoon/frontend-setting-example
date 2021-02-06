@@ -1,7 +1,10 @@
 import { combineReducers, PayloadAction } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
-import { all } from 'redux-saga/effects';
+import { all, fork } from 'redux-saga/effects';
+import { projectAState, projectASaga } from 'project_a/reducer';
+import { projectBState, projectBSaga } from 'project_b/reducer';
 
+// todo: project별 state type 추가
 // export interface State {}
 
 export interface Action {
@@ -9,6 +12,7 @@ export interface Action {
   type: string;
 }
 
+// state: State | undefined
 export const rootReducer = (state: undefined, action: Action) => {
   switch (action.type) {
     case HYDRATE:
@@ -16,12 +20,16 @@ export const rootReducer = (state: undefined, action: Action) => {
       return action.payload;
 
     default: {
-      const combineReducer = combineReducers({});
+      const combineReducer = combineReducers({
+        projectA: projectAState,
+        projectB: projectBState,
+      });
       return combineReducer(state, action);
     }
   }
 };
 
 export function* rootSaga() {
-  yield all([]);
+  const allSagas = [...projectASaga, ...projectBSaga];
+  yield all(allSagas.map((saga) => fork(saga)));
 }

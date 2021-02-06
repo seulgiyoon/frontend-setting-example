@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useQuery } from 'react-query';
-import { PostApi } from '@api/post';
+import { PostApi } from 'api/post';
 
 const StyledPageNav = styled.div``;
 const StyledPostList = styled.ul``;
