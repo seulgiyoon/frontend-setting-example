@@ -4,6 +4,7 @@
     "baseUrl": ".",
     "paths": {
       "api/*": ["lib/api/*"],
+      "utils/*": ["utils/*"],
       "project_a/*": ["src/project_a/*"],
       "project_b/*": ["src/project_b/*"]
     }
