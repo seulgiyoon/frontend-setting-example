@@ -22,4 +22,7 @@ module.exports = withTM({
 
     return config;
   },
+  images: {
+    domains: ['via.placeholder.com'],
+  },
 });

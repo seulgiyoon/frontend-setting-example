@@ -8,7 +8,9 @@ import {
   PhotoState,
 } from './photosSlice';
 
-const apiRequest = (albumId: number): Promise<AxiosResponse<PhotoState[]>> => {
+export const apiRequest = (
+  albumId: number,
+): Promise<AxiosResponse<PhotoState[]>> => {
   return axios.get(`${JSON_BASE_URL}/photos?albumId=${albumId}&_limit=8`);
 };
 

@@ -8,7 +8,7 @@ import {
   AlbumState,
 } from './albumsSlice';
 
-const apiRequest = (): Promise<AxiosResponse<AlbumState[]>> => {
+export const apiRequest = (): Promise<AxiosResponse<AlbumState[]>> => {
   return axios.get(`${JSON_BASE_URL}/albums?userId=1`);
 };
 
