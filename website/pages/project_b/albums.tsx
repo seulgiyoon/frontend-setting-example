@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, wrapper, SagaStore } from 'src/global/store/store';
-import {
-  getAlbums,
-  AlbumState,
-} from 'src/project_b/features/albums/albumsSlice';
+import { getAlbums } from 'src/project_b/features/albums/albumsSlice';
 import { END } from 'redux-saga';
 import Link from 'next/link';
 
@@ -37,6 +34,7 @@ const ExampleTodoPage = () => {
 
 // redux SSR
 export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
+  if (store.getState().projectB.albums.albums.length !== 0) return;
   store.dispatch(getAlbums());
 
   store.dispatch(END);

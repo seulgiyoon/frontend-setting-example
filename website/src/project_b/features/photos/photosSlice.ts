@@ -14,17 +14,13 @@ export interface IPhotos {
   error: Error | null;
 }
 
-export interface albumId {
-  albumId: number;
-}
-
 const initialState: IPhotos = { isLoading: false, photos: [], error: null };
 
 const photosSlice = createSlice({
   name: 'photos',
   initialState,
   reducers: {
-    getPhotos: (state, action: PayloadAction<albumId>) => {
+    getPhotos: (state, action: PayloadAction<string>) => {
       state.isLoading = true;
     },
     getPhotosSuccess: (state, action: PayloadAction<PhotoState[]>) => {

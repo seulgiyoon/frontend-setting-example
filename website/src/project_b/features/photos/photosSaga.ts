@@ -9,7 +9,7 @@ import {
 } from './photosSlice';
 
 export const apiRequest = (
-  albumId: number,
+  albumId: string,
 ): Promise<AxiosResponse<PhotoState[]>> => {
   return axios.get(`${JSON_BASE_URL}/photos?albumId=${albumId}&_limit=8`);
 };
@@ -17,7 +17,6 @@ export const apiRequest = (
 function* getPhotoData(action: ReturnType<typeof getPhotos>) {
   try {
     const res: AxiosResponse<PhotoState[]> = yield call(
-      null,
       apiRequest,
       action.payload,
     );

@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { PhotoState } from 'src/project_b/features/photos/photosSlice';
-import { apiRequest } from 'src/project_b/features/photos/photosSaga';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'src/global/store/store';
+import { getPhotos } from 'src/project_b/features/photos/photosSlice';
 
 interface PhotoPageProps {
-  photos: PhotoState[];
   albumId: string;
 }
 
@@ -17,30 +17,26 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const { albumId } = params;
 
-  try {
-    const { data } = await apiRequest(albumId);
-    return {
-      props: {
-        photos: data,
-        albumId,
-      },
-      revalidate: 1,
-    };
-  } catch (error) {
-    console.error(`Get photos from album id ${albumId} error: `, error);
-    return {
-      props: {
-        photos: {},
-        albumId,
-      },
-      revalidate: 1,
-    };
-  }
+  return {
+    props: {
+      albumId,
+    },
+    revalidate: 1,
+  };
 }
 
 // getStaticProps에서 리턴한 postData를 받아서 사용
-export default function Post({ photos, albumId }: PhotoPageProps) {
-  if (!photos) return null;
+export default function Post({ albumId }: PhotoPageProps) {
+  const dispatch = useDispatch();
+  const { photos, isLoading, error } = useSelector(
+    (state: RootState) => state.projectB.photos,
+  );
+
+  useEffect(() => {
+    dispatch(getPhotos(albumId));
+  }, [dispatch]);
+
+  if (photos.length === 0 || error || isLoading) return null;
 
   return (
     <>
