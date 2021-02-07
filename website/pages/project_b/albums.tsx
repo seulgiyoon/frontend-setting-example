@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, wrapper, SagaStore } from 'src/global/store/store';
+// import { RootState } from 'src/global/reducer';
 import { getAlbums } from 'src/project_b/features/albums/albumsSlice';
 import { END } from 'redux-saga';
 import Link from 'next/link';
@@ -11,11 +12,6 @@ const ExampleTodoPage = () => {
   const { albums, isLoading, error } = useSelector(
     (state: RootState) => state.projectB.albums,
   );
-
-  // redux CSR
-  // useEffect(() => {
-  //   dispatch(getTodos())
-  // }, [dispatch])
 
   if (albums.length === 0 || error || isLoading) return null;
 

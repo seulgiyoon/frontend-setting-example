@@ -1,4 +1,4 @@
-import { AnyAction, combineReducers } from '@reduxjs/toolkit';
+import { AnyAction, combineReducers, PayloadAction } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 import { all, fork } from 'redux-saga/effects';
 import { IProjectA, projectAState, projectASaga } from 'project_a/reducer';
@@ -9,7 +9,12 @@ export interface State {
   projectB: IProjectB;
 }
 
-export const rootReducer = (state: State | undefined, action: AnyAction) => {
+export interface Action {
+  payload?: State;
+  type: string;
+}
+
+export const rootReducer = (state: State | undefined, action: Action) => {
   switch (action.type) {
     case HYDRATE:
       console.log('HYDRATE');

@@ -34,7 +34,7 @@ export default function Post({ albumId }: PhotoPageProps) {
 
   useEffect(() => {
     dispatch(getPhotos(albumId));
-  }, [dispatch]);
+  }, [dispatch, albumId]);
 
   if (photos.length === 0 || error || isLoading) return null;
 
