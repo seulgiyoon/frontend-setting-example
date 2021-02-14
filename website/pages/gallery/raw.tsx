@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { PET_IMAGES_RAW } from '../../data';
+import { getLayout } from '../../src/project_a/components/Layouts/SiteLayout';
 
 const StyledImageGrid = styled.div`
   display: grid;
@@ -23,7 +24,7 @@ const StyledImageGrid = styled.div`
   }
 `;
 
-export default function RawImagesPage() {
+function RawImagesPage() {
   return (
     <StyledImageGrid>
       {PET_IMAGES_RAW.map((singleData, index) => (
@@ -34,3 +35,7 @@ export default function RawImagesPage() {
     </StyledImageGrid>
   );
 }
+
+RawImagesPage.getLayout = getLayout;
+
+export default RawImagesPage;
