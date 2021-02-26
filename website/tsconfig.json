@@ -3,7 +3,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@api/*": ["lib/api/*"]
+      "api/*": ["lib/api/*"],
+      "utils/*": ["utils/*"],
+      "project_a/*": ["src/project_a/*"],
+      "project_b/*": ["src/project_b/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

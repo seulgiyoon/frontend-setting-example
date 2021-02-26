@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Layout, Navbar, Footer, UserNav } from '@monorepo/ui';
 import { ModalContext } from '../utils/context/ModalContext';
 // import { ModalContext } from '@monorepo/context/ModalContext';
-import { ProductApi } from '@api/product';
+import { ProductApi } from 'api/product';
 import { useQuery, QueryClient } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
 

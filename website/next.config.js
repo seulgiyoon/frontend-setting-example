@@ -54,4 +54,7 @@ module.exports = withTM({
     return config;
   },
   basePath,
+  images: {
+    domains: ['via.placeholder.com'],
+  },
 });

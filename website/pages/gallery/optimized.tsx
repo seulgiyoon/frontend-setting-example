@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import { PET_IMAGES_OPTIMIZED } from '../../data';
 const requiredImg = require('../../public/images/cat01.jpeg');
+import { getLayout } from '../../src/project_a/components/Layouts/SiteLayout';
 
 const StyledImageGrid = styled.div`
   display: grid;
@@ -23,7 +24,7 @@ if (process.browser) {
   console.log({ dpr: window.devicePixelRatio });
 }
 
-export default function OptimizedImagesPage() {
+function OptimizedImagesPage() {
   return (
     <StyledImageGrid>
       {PET_IMAGES_OPTIMIZED.map((singleData, index) => {
@@ -41,3 +42,7 @@ export default function OptimizedImagesPage() {
     </StyledImageGrid>
   );
 }
+
+OptimizedImagesPage.getLayout = getLayout;
+
+export default OptimizedImagesPage;

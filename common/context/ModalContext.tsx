@@ -1,6 +1,6 @@
 import React, { createContext } from 'react';
-import useModal from '@monorepo/hooks/useModal';
-import Modal from '@monorepo/ui/Modal';
+import useModal from '@monorepo/hooks';
+import { Modal } from '@monorepo/ui';
 
 const ModalContext = createContext(undefined);
 
