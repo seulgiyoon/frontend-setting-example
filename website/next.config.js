@@ -27,6 +27,24 @@ module.exports = withTM({
       config.resolve.alias['@sentry/node'] = '@sentry/browser';
     }
 
+    if (
+      SENTRY_DSN &&
+      SENTRY_ORG &&
+      SENTRY_PROJECT &&
+      SENTRY_AUTH_TOKEN &&
+      COMMIT_SHA &&
+      NODE_ENV === 'production'
+    ) {
+      config.plugins.push(
+        new SentryWebpackPlugin({
+          include: '.next',
+          ignore: ['node_modules'],
+          urlPrefix: '~/_next',
+          release: COMMIT_SHA,
+        }),
+      );
+    }
+
     config.plugins.push(
       new webpack.DefinePlugin({
         'process.env.NEXT_IS_SERVER': JSON.stringify(isServer.toString()),

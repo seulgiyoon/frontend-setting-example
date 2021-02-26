@@ -3,18 +3,9 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { Hydrate } from 'react-query/hydration';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { wrapper } from '../src/global/store/store';
-import * as Sentry from '@sentry/node';
-// import { init } from '../utils/sentry';
+import { init } from '../utils/sentry';
 
-// init();
-
-if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
-  Sentry.init({
-    enabled: process.env.NODE_ENV === 'production',
-    dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
-    release: process.env.NEXT_PUBLIC_COMMIT_SHA,
-  });
-}
+init();
 
 const queryClient = new QueryClient();
 
