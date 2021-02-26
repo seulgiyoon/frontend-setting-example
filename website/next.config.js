@@ -45,6 +45,9 @@ module.exports = withSourceMaps(
             ignore: ['node_modules'],
             urlPrefix: '~/_next',
             release: COMMIT_SHA,
+            deploy: {
+              env: 'production',
+            },
           }),
         );
       }
