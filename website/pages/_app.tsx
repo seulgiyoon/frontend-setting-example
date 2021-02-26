@@ -3,7 +3,6 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { Hydrate } from 'react-query/hydration';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { wrapper } from '../src/global/store/store';
-
 import { init } from '../utils/sentry';
 
 init();
