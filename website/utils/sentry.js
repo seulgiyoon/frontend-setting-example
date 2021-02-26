@@ -28,8 +28,7 @@ export const init = () => {
     Sentry.init({
       enabled: process.env.NODE_ENV === 'production',
       integrations,
-      dsn:
-        'https://11ee78b9df3044dc94020bae43c45e82@o533490.ingest.sentry.io/5653048',
+      dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
       release: process.env.NEXT_PUBLIC_COMMIT_SHA,
     });
   }
