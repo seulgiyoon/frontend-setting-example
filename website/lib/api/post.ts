@@ -1,4 +1,5 @@
 import axios from 'axios';
+import * as Sentry from '@sentry/node';
 
 import { JSON_BASE_URL } from '../../utils/constant';
 
@@ -12,6 +13,9 @@ export const PostApi = {
       );
       return result.data;
     } catch (error) {
+      if (process.env.NODE_ENV === 'production') {
+        Sentry.captureException(error);
+      }
       console.log(error);
     }
   },
