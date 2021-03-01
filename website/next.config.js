@@ -2,44 +2,28 @@ const withTM = require('next-transpile-modules')(['@monorepo/ui']);
 const withSourceMaps = require('@zeit/next-source-maps');
 const SentryWebpackPlugin = require('@sentry/webpack-plugin');
 
-const {
-  NEXT_PUBLIC_SENTRY_DSN: SENTRY_DSN,
-  SENTRY_ORG,
-  SENTRY_PROJECT,
-  SENTRY_AUTH_TOKEN,
-  NODE_ENV,
-  VERCEL_GITHUB_COMMIT_SHA,
-} = process.env;
+const { NODE_ENV } = process.env;
 
-const COMMIT_SHA = VERCEL_GITHUB_COMMIT_SHA;
-
-process.env.SENTRY_DSN = SENTRY_DSN;
+// const COMMIT_SHA = VERCEL_GITHUB_COMMIT_SHA;
 const basePath = '';
 
 module.exports = withSourceMaps(
   withTM({
-    env: {
-      NEXT_PUBLIC_COMMIT_SHA: COMMIT_SHA,
-    },
+    // env: {
+    //   NEXT_PUBLIC_COMMIT_SHA: COMMIT_SHA,
+    // },
     webpack(config, { buildId, dev, isServer, defaultLoaders, webpack }) {
       if (!isServer) {
         config.resolve.alias['@sentry/node'] = '@sentry/browser';
       }
 
-      if (
-        SENTRY_DSN &&
-        SENTRY_ORG &&
-        SENTRY_PROJECT &&
-        SENTRY_AUTH_TOKEN &&
-        COMMIT_SHA &&
-        NODE_ENV === 'production'
-      ) {
+      if (NODE_ENV === 'production') {
         config.plugins.push(
           new SentryWebpackPlugin({
             include: '.next',
             ignore: ['node_modules'],
             urlPrefix: '~/_next',
-            release: COMMIT_SHA,
+            release: buildId,
           }),
         );
       }
