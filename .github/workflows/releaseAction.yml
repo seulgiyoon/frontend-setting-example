@@ -20,4 +20,4 @@ jobs:
         with:
           tagName: ${{ github.sha }}
           environment: qa
-          sourceMapOptions: '{"include": ".next", "ignore": ["node_modules"], "urlPrefix": "~/_next"}'
+          sourceMapOptions: '{"include": [".next"], "ignore": ["node_modules"], "urlPrefix": "~/_next"}'
