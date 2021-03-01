@@ -19,6 +19,7 @@ if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
     // For Node.js, rewrite Error.stack to use relative paths, so that source
     // maps starting with ~/_next map to files in Error.stack with path
     // app:///_next
+    // yeah
 
     integrations.push(
       new RewriteFrames({
