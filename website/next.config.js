@@ -10,6 +10,10 @@ module.exports = withSourceMaps(
         config.resolve.alias['@sentry/node'] = '@sentry/browser';
       }
 
+      if (!dev) {
+        config.devtool = 'nosources-source-map';
+      }
+
       config.module.rules.push({
         test: /\.(png|jpg|jpeg|gif|svg|eot|ttf|woff|woff2)$/,
         use: {

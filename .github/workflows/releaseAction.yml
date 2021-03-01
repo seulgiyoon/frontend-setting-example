@@ -11,14 +11,22 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@master
+
+      - uses: actions/cache@v1
+        with:
+        path: node_modules/
+        key: ${{ runner.os }}-npm-${{ hashFiles('yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-npm-
+
       - name: Install dependencies
         run: yarn install
+
       - name: Build
         run: |
           cd website
           yarn build
-      - name: check files
-        run: ls
+
       - name: Create a Sentry.io release
         uses: tclindner/sentry-releases-action@v1.2.0
         env:
@@ -29,3 +37,4 @@ jobs:
           tagName: ${{ github.sha }}
           environment: production
           sourceMapOptions: '{"include": ["./website/.next"], "ignore": ["node_modules"], "urlPrefix": "~/_next"}'
+          ext: ['map']
