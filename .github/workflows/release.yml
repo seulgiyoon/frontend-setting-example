@@ -27,7 +27,7 @@ jobs:
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
         with:
           environment: production
-          sourcemaps: './.next/server'
+          sourcemaps: './website/.next/server'
           url_prefix: '~/_next'
 
       - uses: actions/checkout@v2
@@ -39,5 +39,5 @@ jobs:
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
         with:
           environment: production
-          sourcemaps: './.next/static/chunks'
+          sourcemaps: './website/.next/static/chunks'
           url_prefix: '~/_next'
