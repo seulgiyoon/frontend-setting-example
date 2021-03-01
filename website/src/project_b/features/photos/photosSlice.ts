@@ -5,6 +5,7 @@ export interface PhotoState {
   id: number;
   title: string;
   url: string;
+  errorString: string;
   thumbnailUrl: string;
 }
 
