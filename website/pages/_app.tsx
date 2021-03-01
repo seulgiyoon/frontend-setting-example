@@ -20,7 +20,6 @@ if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
     // maps starting with ~/_next map to files in Error.stack with path
     // app:///_next
 
-    console.log('hello hi');
     integrations.push(
       new RewriteFrames({
         iteratee: (frame) => {
