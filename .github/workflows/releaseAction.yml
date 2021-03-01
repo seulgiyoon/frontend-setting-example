@@ -6,21 +6,18 @@ on:
       - main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Install dependencies
-        run: yarn install
-      - name: Build
-        run: |
-          cd website
-          yarn build
-
   createSentryRelease:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@master
+      - name: Install dependencies
+        run: yarn install
+      - name: Build
+        run: |
+          ls
+          cd website
+          yarn build
       - name: Create a Sentry.io release
         uses: tclindner/sentry-releases-action@v1.2.0
         env:
