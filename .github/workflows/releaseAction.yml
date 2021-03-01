@@ -6,6 +6,16 @@ on:
       - main
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install dependencies
+        run: yarn install
+      - name: Build
+        run: |
+          cd website
+          yarn build
+
   createSentryRelease:
     runs-on: ubuntu-latest
     steps:
@@ -19,5 +29,5 @@ jobs:
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
         with:
           tagName: ${{ github.sha }}
-          environment: qa
+          environment: production
           sourceMapOptions: '{"include": [".next"], "ignore": ["node_modules"], "urlPrefix": "~/_next"}'
