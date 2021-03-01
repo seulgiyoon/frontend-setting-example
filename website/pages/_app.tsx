@@ -8,7 +8,6 @@ import { wrapper } from '../src/global/store/store';
 // init();
 
 import * as Sentry from '@sentry/node';
-import { RewriteFrames } from '@sentry/integrations';
 
 if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
   Sentry.init({
