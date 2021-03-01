@@ -1,5 +1,7 @@
 const withTM = require('next-transpile-modules')(['@monorepo/ui']);
-const withSourceMaps = require('@zeit/next-source-maps');
+const withSourceMaps = require('@zeit/next-source-maps')({
+  devtool: 'source-map',
+});
 
 const basePath = '';
 

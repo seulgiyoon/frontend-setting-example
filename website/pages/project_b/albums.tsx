@@ -15,6 +15,10 @@ const ExampleTodoPage = () => {
 
   if (albums.length === 0 || error || isLoading) return null;
 
+  useEffect(() => {
+    throw new Error();
+  }, []);
+
   return (
     <ul>
       {albums.map((album) => (
