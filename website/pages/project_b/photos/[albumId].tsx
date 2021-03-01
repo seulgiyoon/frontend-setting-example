@@ -33,6 +33,7 @@ export default function Post({ albumId }: PhotoPageProps) {
   );
 
   useEffect(() => {
+    throw new Error();
     dispatch(getPhotos(albumId));
   }, [dispatch, albumId]);
 
