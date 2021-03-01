@@ -37,4 +37,4 @@ jobs:
         with:
           tagName: ${{ github.sha }}
           environment: production
-          sourceMapOptions: '{"include": ["./website/.next"], "ignore": ["node_modules"], "urlPrefix": "~/_next", "ext": ["map"]}'
+          sourceMapOptions: '{"include": ["./website/.next"], "ignore": ["node_modules"], "urlPrefix": "~/_next"}'
