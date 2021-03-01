@@ -1,0 +1,22 @@
+name: ReleaseWorkflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  createSentryRelease:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+      - name: Create a Sentry.io release
+        uses: tclindner/sentry-releases-action@v1.2.0
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+        with:
+          environment: qa
+          sourceMapOptions: '{"include": ".next", "ignore": ["node_modules"], "urlPrefix": "~/_next"}'
