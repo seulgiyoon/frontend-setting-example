@@ -33,6 +33,7 @@ module.exports = withSourceMaps(
       return config;
     },
     basePath,
+    productionBrowserSourceMaps: true,
     images: {
       domains: ['via.placeholder.com'],
     },
