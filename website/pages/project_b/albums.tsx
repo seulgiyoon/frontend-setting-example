@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, wrapper, SagaStore } from 'src/global/store/store';
 // import { RootState } from 'src/global/reducer';
@@ -14,6 +14,10 @@ const ExampleTodoPage = () => {
   );
 
   if (albums.length === 0 || error || isLoading) return null;
+
+  useEffect(() => {
+    throw new Error();
+  }, []);
 
   return (
     <ul>

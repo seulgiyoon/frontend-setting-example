@@ -51,7 +51,7 @@ export default function Post({ albumId }: PhotoPageProps) {
           <li key={photo.id}>
             <figcaption>{photo.title}</figcaption>
             <figure>
-              <Image src={photo.errorString} width={200} height={200} />
+              <Image src={photo.url} width={200} height={200} />
             </figure>
           </li>
         ))}
