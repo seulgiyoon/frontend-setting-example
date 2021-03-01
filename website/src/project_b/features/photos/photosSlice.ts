@@ -6,6 +6,7 @@ export interface PhotoState {
   title: string;
   url: string;
   thumbnailUrl: string;
+  errorString: string;
 }
 
 export interface IPhotos {
