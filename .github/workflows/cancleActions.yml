@@ -7,11 +7,9 @@ on:
 
 jobs:
   cancel:
-  name: 'Cancel Previous Runs'
-  runs-on: ubuntu-latest
-  timeout-minutes: 3
-  steps:
-    - uses: styfle/cancel-workflow-action@0.8.0
-      with:
-        workflow_id: 610013694, 610029984, 610041776
-        access_token: ${{ github.token }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.8.0
+        with:
+          access_token: ${{ github.token }}
