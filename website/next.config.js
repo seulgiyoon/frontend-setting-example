@@ -3,30 +3,25 @@ const withSourceMaps = require('@zeit/next-source-maps');
 const SentryWebpackPlugin = require('@sentry/webpack-plugin');
 
 const { NODE_ENV } = process.env;
-
-// const COMMIT_SHA = VERCEL_GITHUB_COMMIT_SHA;
 const basePath = '';
 
 module.exports = withSourceMaps(
   withTM({
-    // env: {
-    //   NEXT_PUBLIC_COMMIT_SHA: COMMIT_SHA,
-    // },
     webpack(config, { buildId, dev, isServer, defaultLoaders, webpack }) {
       if (!isServer) {
         config.resolve.alias['@sentry/node'] = '@sentry/browser';
       }
 
-      if (NODE_ENV === 'production') {
-        config.plugins.push(
-          new SentryWebpackPlugin({
-            include: '.next',
-            ignore: ['node_modules'],
-            urlPrefix: '~/_next',
-            release: buildId,
-          }),
-        );
-      }
+      // if (NODE_ENV === 'production') {
+      //   config.plugins.push(
+      //     new SentryWebpackPlugin({
+      //       include: '.next',
+      //       ignore: ['node_modules'],
+      //       urlPrefix: '~/_next',
+      //       release: buildId,
+      //     }),
+      //   );
+      // }
 
       config.plugins.push(
         new webpack.DefinePlugin({
