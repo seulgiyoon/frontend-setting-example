@@ -1,41 +1,36 @@
 const withTM = require('next-transpile-modules')(['@monorepo/ui']);
-const withSourceMaps = require('@zeit/next-source-maps')({
-  devtool: 'source-map',
-});
+// const withSourceMaps = require('@zeit/next-source-maps')({
+//   devtool: 'source-map',
+// });
 
-module.exports = withSourceMaps(
-  withTM({
-    webpack(config, { buildId, dev, isServer, defaultLoaders, webpack }) {
-      if (!isServer) {
-        config.resolve.alias['@sentry/node'] = '@sentry/browser';
-      }
+module.exports = withTM({
+  webpack(config, { buildId, dev, isServer, defaultLoaders, webpack }) {
+    if (!isServer) {
+      config.resolve.alias['@sentry/node'] = '@sentry/browser';
+    }
 
-      if (!dev) {
-        config.devtool = 'nosources-source-map';
-      }
-
-      config.module.rules.push({
-        test: /\.(png|jpg|jpeg|gif|svg|eot|ttf|woff|woff2)$/,
-        use: {
-          loader: 'url-loader',
-          options: {
-            name: '[name].[contenthash].[ext]',
-            outputPath: '../public/hashedImages/',
-            publicPath: '/hashedImages/',
-            limit: 4000,
-          },
+    config.module.rules.push({
+      test: /\.(png|jpg|jpeg|gif|svg|eot|ttf|woff|woff2)$/,
+      use: {
+        loader: 'url-loader',
+        options: {
+          name: '[name].[contenthash].[ext]',
+          outputPath: '../public/hashedImages/',
+          publicPath: '/hashedImages/',
+          limit: 4000,
         },
-      });
+      },
+    });
 
-      config.module.rules.push({
-        test: /\.tsx?|\.ts?$/,
-        use: [defaultLoaders.babel],
-      });
+    config.module.rules.push({
+      test: /\.tsx?|\.ts?$/,
+      use: [defaultLoaders.babel],
+    });
 
-      return config;
-    },
-    images: {
-      domains: ['via.placeholder.com'],
-    },
-  }),
-);
+    return config;
+  },
+  productionBrowserSourceMaps: process.env.IS_SENTRY ? true : false,
+  images: {
+    domains: ['via.placeholder.com'],
+  },
+});

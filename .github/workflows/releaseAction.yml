@@ -24,6 +24,8 @@ jobs:
         run: yarn install
 
       - name: Build
+        env:
+          IS_SENTRY: true
         run: |
           cd website
           yarn build
